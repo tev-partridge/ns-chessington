@@ -17,13 +17,44 @@ export default class Rook extends Piece {
         const row: number = fromSquare.row;
         const col: number = fromSquare.col;
 
-        for(let i: number = 0; i < GameSettings.BOARD_SIZE; i++) {
-            if (i === col) continue;
-            destSquares.push(Square.at(row, i));
+        // Up
+        for (let r: number = row + 1; r <= 7; r++) {
+            const square = Square.at(r, col);
+            const piece = board.getPiece(square);
+            if (piece !== undefined) {
+                break;
+            }
+            destSquares.push(square);
         }
-        for(let i: number = 0; i < GameSettings.BOARD_SIZE; i++) {
-            if (i === row) continue;
-            destSquares.push(Square.at(i, col));
+
+        // Right
+        for (let c: number = col + 1; c <= 7; c++) {
+            const square = Square.at(row, c);
+            const piece = board.getPiece(square);
+            if (piece !== undefined) {
+                break;
+            }
+            destSquares.push(square);
+        }
+
+        // Down
+        for (let r: number = row - 1; r >= 0; r--) {
+            const square = Square.at(r, col);
+            const piece = board.getPiece(square);
+            if (piece !== undefined) {
+                break;
+            }
+            destSquares.push(square);
+        }
+
+        // Left
+        for (let c: number = col - 1; c >= 0; c--) {
+            const square = Square.at(row, c);
+            const piece = board.getPiece(square);
+            if (piece !== undefined) {
+                break;
+            }
+            destSquares.push(square);
         }
 
         return destSquares;
