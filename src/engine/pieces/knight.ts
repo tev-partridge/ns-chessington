@@ -2,6 +2,7 @@ import Piece from './piece';
 import Player from '../player';
 import Board from '../board';
 import Square from "../square";
+import King from './king';
 
 export default class Knight extends Piece {
     public constructor(player: Player) {
@@ -21,7 +22,11 @@ export default class Knight extends Piece {
                 if (Math.abs(rowOffset) + Math.abs(colOffset) !== 3) continue;
                 if (fromRow + rowOffset < 0 || fromRow + rowOffset > 7 || fromCol + colOffset < 0 || fromCol + colOffset > 7) continue;
 
-                destSquares.push(new Square(fromRow + rowOffset, fromCol + colOffset));
+                const destSquare = new Square(fromRow + rowOffset, fromCol + colOffset);
+                const piece = board.getPiece(destSquare);
+                if (piece !== undefined && (piece.player === this.player || piece instanceof King)) continue;
+
+                destSquares.push(destSquare);
             }
         }
 

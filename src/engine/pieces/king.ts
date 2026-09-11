@@ -24,7 +24,12 @@ export default class King extends Piece {
                 let destCol: number = fromCol + colOffset;
 
                 if (destRow < 0 || destRow > 7 || destCol < 0 || destCol > 7) continue;
-                destSquares.push(new Square(destRow, destCol));
+
+                const destSquare = new Square(destRow, destCol);
+                const piece = board.getPiece(destSquare);
+                if (piece !== undefined && (piece.player === this.player || piece instanceof King)) continue;
+
+                destSquares.push(destSquare);
             }
         }
 

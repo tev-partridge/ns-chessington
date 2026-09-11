@@ -4,4 +4,4 @@ const app = express();
 
 app.use(express.static(join(__dirname, 'frontend')));
 
-app.listen(3000, () => console.log('Chessington is ready to go!'));
+app.listen(3001, () => console.log('Chessington is ready to go!'));
