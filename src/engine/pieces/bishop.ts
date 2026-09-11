@@ -19,19 +19,39 @@ export default class Bishop extends Piece {
 
         // Top left
         for (let row: number = fromRow + 1, col: number = fromCol - 1; row <= 7 && col >= 0; row++, col--) {
-            destSquares.push(Square.at(row, col));
+            const square = Square.at(row, col);
+            const piece = board.getPiece(square);
+            if (piece !== undefined) {
+                break;
+            }
+            destSquares.push(square);
         }
         // Top right
         for (let row: number = fromRow + 1, col: number = fromCol + 1; row <=7 && col <= 7; row++, col++) {
-            destSquares.push(Square.at(row, col));
+            const square = Square.at(row, col);
+            const piece = board.getPiece(square);
+            if (piece !== undefined) {
+                break;
+            }
+            destSquares.push(square);
         }
         // Bottom left
         for (let row: number = fromRow - 1, col: number = fromCol - 1; row >= 0 && col >= 0; row--, col--) {
-            destSquares.push(Square.at(row, col));
+            const square = Square.at(row, col);
+            const piece = board.getPiece(square);
+            if (piece !== undefined) {
+                break;
+            }
+            destSquares.push(square);
         }
         // Bottom right
         for (let row: number = fromRow - 1, col: number = fromCol + 1; row >= 0 && col <= 7; row--, col++) {
-            destSquares.push(Square.at(row, col));
+            const square = Square.at(row, col);
+            const piece = board.getPiece(square);
+            if (piece !== undefined) {
+                break;
+            }
+            destSquares.push(square);
         }
 
         return destSquares;
